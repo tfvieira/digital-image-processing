@@ -1,24 +1,32 @@
-#%%
+# %%===========================================================================
+# IMPORT MODULES
+# 
+# =============================================================================
 import os
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 path = "../img/"
 
-# %%
+# %%===========================================================================
+# READING IMAGES
+# 
+# =============================================================================
+
+#%% Reading a grayscale image
 imfile = "ctskull.tif"
 img = cv2.imread(os.path.join(path,imfile), cv2.IMREAD_GRAYSCALE)
 plt.imshow(img, cmap='gray')
 plt.show()
 
-#%%
+#%% Load a color image
 imfile = "baboon.png"
 img = cv2.imread(os.path.join(path,imfile), cv2.IMREAD_COLOR)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 plt.imshow(img)
 plt.show()
 
-#%%
+#%% Load a color image and visualize each channel separately
 imfile = "baboon.png"
 img = cv2.imread(os.path.join(path,imfile), cv2.IMREAD_COLOR)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -38,14 +46,19 @@ plt.subplot("223"); plt.title("g"); plt.imshow(rgb[1], cmap='gray')
 plt.subplot("224"); plt.title("b"); plt.imshow(rgb[2], cmap='gray')
 plt.show()
 
-#%%
+# %%===========================================================================
+# VISUALIZING HISTOGRAMS
+# 
+# =============================================================================
+
+#%% Visualizing the histogram of a grayscale image
 imfile = "ctskull.tif"
 img = cv2.imread(os.path.join(path,imfile), cv2.IMREAD_GRAYSCALE)
 plt.subplot("221"); plt.title("Original"); plt.imshow(img, cmap='gray')
 plt.subplot("222"); plt.title("Histogram"); plt.hist(img.ravel(), 256, [0, 256])
 plt.show()
 
-#%%
+#%% Visualizing the histogram of a color image
 imfile = "baboon.png"
 img = cv2.imread(os.path.join(path,imfile), cv2.IMREAD_COLOR)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -57,3 +70,8 @@ for i, col in enumerate(color):
     plt.plot(hist, color=col)
     plt.xlim([0, 256])
 plt.show()
+
+# %%===========================================================================
+# CREATING IMAGES
+#
+# =============================================================================
