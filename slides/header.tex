@@ -1,0 +1,110 @@
+\documentclass[a4paper]{beamer}%handout
+
+
+\usepackage{listings}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+%% Add Matlab code
+\usepackage{mcode}
+%% Add Matlab code end
+
+
+%% Add watermarks
+%\usepackage{draftwatermark}
+%% Add watermarks end
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=cyan,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+	}
+
+\graphicspath{{img/}}
+
+\mode<presentation> {
+
+%\usetheme{default}%yes % use %\frametitle in all slides recommended
+%\usetheme{AnnArbor}%no
+%\usetheme{Antibes} %yes %favorite
+%\usetheme{Bergen} %no
+%\usetheme{Berkeley} %no
+%\usetheme{Berlin} %no
+%\usetheme{Boadilla} %yes % good use of paper space
+%\usetheme{CambridgeUS} %yes %favorite %use %\frametitle recommended
+%\usetheme{Copenhagen}%yes%noframetitle
+%\usetheme{Darmstadt}%no
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}%no
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}%no
+%\usetheme{Rochester}%no
+%\usetheme{Singapore}%yees
+%\usetheme{Szeged}%no
+%\usetheme{Warsaw}%no
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+%----------------------------------------------------------------------------------------
+%	NEW COMMANDS
+%----------------------------------------------------------------------------------------
+
+\newcommand{\Conv}{\mathop{\scalebox{1.5}{\raisebox{-0.2ex}{$\ast$}}}}%
+%\linespread{1.3}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Introduction]{Digital Image Processing} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Prof. Tiago Vieira, PhD} % Your name
+\institute[UFAL] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Universidade Federal de Alagoas \\ % Your institution for the title page
+\medskip
+\textit{tvieira@ic.ufal.br} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
