@@ -24,6 +24,7 @@
 - Change data type of given numpy array
 - Reverse a numpy array
 - How to make a NumPy array read-only?
+- How to count the frequency of unique values in NumPy array?
 
 # Questions on NumPy Matrix
 - Get the maximum value from given matrix
@@ -38,7 +39,6 @@
 - Get the eigen values of a matrix
 - How to Calculate the determinant of a matrix using NumPy?
 - How to inverse a matrix using NumPy
-- How to count the frequency of unique values in NumPy array?
 - Multiply matrices of complex numbers using NumPy in Python
 - Compute the outer product of two given vectors using NumPy in Python
 - Calculate inner, outer, and cross products of matrices and vectors using NumPy
