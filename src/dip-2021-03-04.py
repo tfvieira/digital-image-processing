@@ -115,7 +115,7 @@ cv2.destroyAllWindows()
 #%%============================================================================
 # CROPPING
 # =============================================================================
-image = cv2.imread(os.path.join(folder, 'lena.png'))
+image = cv2.imread(os.path.join(path, 'lena.png'))
 height, width = image.shape[:2]
 # lets get starting pixel coordinates (top left of cropping rectangle)
 start_row, start_col = int(height * .25), int(width * .25)

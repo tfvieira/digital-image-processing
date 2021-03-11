@@ -2,11 +2,10 @@
 # IMPORT MODULES
 # 
 # =============================================================================
-import os
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from utils import *
+from utils import plot_histogram
 path = "../img/"
 
 # %%===========================================================================
@@ -47,7 +46,7 @@ cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 plt.figure(figsize=(16,4))
 plt.subplot("121"); plt.title("Original"); plt.imshow(img)
-plt.subplot("122"); plt.title("Histogram"); plot_rgb_histogram(img)
+plt.subplot("122"); plt.title("Histogram"); plot_histogram(img)
 plt.show()
 
 #%% Initializing a grayscale image with random values, normally distributed
@@ -60,7 +59,7 @@ plt.subplot("222"); plt.title("Histogram"); plt.hist(img.ravel(), 256, [0, 256])
 plt.show()
 
 #%% Initializing a color image with random values, normally distributed
-img = np.ones((50, 50, 3), dtype=np.uint8)
+img = np.zeros((50, 50, 3), dtype=np.uint8)
 cv2.namedWindow("img", cv2.WINDOW_KEEPRATIO)
 while 0xFF & cv2.waitKey(1) != ord('q'):
     bgr = cv2.split(img)
@@ -71,10 +70,11 @@ while 0xFF & cv2.waitKey(1) != ord('q'):
     cv2.imshow("img", img)
 cv2.destroyAllWindows()
 
+#%%
 plt.figure(figsize=(16,4))
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 plt.subplot("121"); plt.title("Original"); plt.imshow(img)
-plt.subplot("122"); plt.title("Histogram"); plot_rgb_histogram(img)
+plt.subplot("122"); plt.title("Histogram"); plot_histogram(img)
 plt.show()
 
 
