@@ -9,7 +9,10 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-norm_img = lambda x : cv2.normalize(x.astype('float'), x, 1, 0, cv2.NORM_MINMAX)
+def norm_img(img):
+    out = np.zeros(img.shape, np.float64)
+    cv2.normalize(img.astype('float64'), out, 1, 0, cv2.NORM_MINMAX)
+    return out
 
 def do_nothing(x):
     pass
@@ -151,3 +154,8 @@ def get_piecewise_transformed_img (img, r1, s1, r2, s2):
     out = out.astype('uint8')
     
     return out
+
+def log_transform(img):
+    img2 = np.copy(img)
+    img2 = np.log(1 + img2)
+    return img2
