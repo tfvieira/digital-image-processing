@@ -159,3 +159,105 @@ def log_transform(img):
     img2 = np.copy(img)
     img2 = np.log(1 + img2)
     return img2
+
+
+def create_white_disk(height = 100, width = 100, xc = 50, yc = 50, rc = 20):
+    xx, yy = np.meshgrid(range(height), range(width))
+    img = np.array(
+            ( (xx - xc)**2 + (yy - yc)**2 - rc**2  ) < 0).astype('float64')
+    return img
+
+# def color_gradient(img):
+    
+#     # Get image's BGR channels
+#     B, G, R = cv2.split(img)
+    
+#     # Compute color derivatives
+#     dBx = cv2.Sobel(B, cv2.CV_32F, 1, 0)
+#     dBy = cv2.Sobel(B, cv2.CV_32F, 0, 1)
+#     dGx = cv2.Sobel(G, cv2.CV_32F, 1, 0)
+#     dGy = cv2.Sobel(G, cv2.CV_32F, 0, 1)
+#     dRx = cv2.Sobel(R, cv2.CV_32F, 1, 0)
+#     dRy = cv2.Sobel(R, cv2.CV_32F, 0, 1)
+    
+#     # Compute inner products
+#     Gxx = np.multiply(dBx, dBx) + np.multiply(dGx, dGx) + np.multiply(dRx, dRx)
+#     Gyy = np.multiply(dBy, dBy) + np.multiply(dGy, dGy) + np.multiply(dRy, dRy)
+#     Gxy = np.multiply(dBx, dBy) + np.multiply(dGx, dGy) + np.multiply(dRx, dRy)
+    
+#     Theta = 0.5 * np.arctan((2 * Gxy) / (Gxx - Gyy))
+#     # F = np.sqrt(0.5 * (Gxx + Gyy) + (Gxx - Gyy) * np.cos(2 * Theta) + 2 * Gxy * np.sin(2 * Theta)))
+    
+#     F = cv2.normalize(F.astype('float'), None, 0, 1, cv2.NORM_MINMAX)
+#     return F
+
+# def plot_multiple_imgs (imlist, titles, nrows = 2, ncols = 2):
+#     for i in range(len(imlist)):
+#         img = imlist[i]
+#         plt.subplot(rc + str(i+1))
+#         if img.ndim > 2:
+#             plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+#         else:
+#             plt.imshow(img, cmap='gray')
+#         plt.title(titles[i])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def createCosineImage2(height, width, freq, theta):
+    img = np.zeros((height, width), dtype=np.float64)
+    xx, yy = np.meshgrid(range(height), range(width))
+    theta = np.deg2rad(theta)
+    rho = (xx * np.cos(theta) - yy * np.sin(theta))
+    img[:] = np.cos(2 * np.pi * freq * rho)
+    return img
+
+def createWhiteDisk2(height = 100, width = 100, xc = 50, yc = 50, rc = 20):
+    xx, yy = np.meshgrid(range(height), range(width))
+    img = np.array(
+            ( (xx - xc)**2 + (yy - yc)**2 - rc**2  ) < 0).astype('float64')
+    return img
+
+def applyLogTransform(img):
+    img2 = np.copy(img)
+    img2 += 1
+    img2 = np.log(img2)
+    return img2
+
+def scaleImage2_uchar(src):
+    if src.dtype != np.float32:
+        src = np.float32(src)
+    cv2.normalize(src, src, 1, 0, cv2.NORM_MINMAX)
+    src = np.uint8(255 * src)
+    return src
