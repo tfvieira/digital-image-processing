@@ -5,14 +5,15 @@ Created on Tue Sep  3 10:56:09 2019
 
 @author: tvieira
 """
+import os
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-def norm_img(img):
-    out = np.zeros(img.shape, np.float64)
-    cv2.normalize(img.astype('float64'), out, 1, 0, cv2.NORM_MINMAX)
-    return out
+
+
+def normalize_img(img):
+    return cv2.normalize(img.astype('float64'), None, 1, 0, cv2.NORM_MINMAX)
 
 def do_nothing(x):
     pass
@@ -167,29 +168,29 @@ def create_white_disk(height = 100, width = 100, xc = 50, yc = 50, rc = 20):
             ( (xx - xc)**2 + (yy - yc)**2 - rc**2  ) < 0).astype('float64')
     return img
 
-# def color_gradient(img):
+def color_gradient(img):
     
-#     # Get image's BGR channels
-#     B, G, R = cv2.split(img)
+    # Get image's BGR channels
+    B, G, R = cv2.split(img)
     
-#     # Compute color derivatives
-#     dBx = cv2.Sobel(B, cv2.CV_32F, 1, 0)
-#     dBy = cv2.Sobel(B, cv2.CV_32F, 0, 1)
-#     dGx = cv2.Sobel(G, cv2.CV_32F, 1, 0)
-#     dGy = cv2.Sobel(G, cv2.CV_32F, 0, 1)
-#     dRx = cv2.Sobel(R, cv2.CV_32F, 1, 0)
-#     dRy = cv2.Sobel(R, cv2.CV_32F, 0, 1)
+    # Compute color derivatives
+    dBx = cv2.Sobel(B, cv2.CV_32F, 1, 0)
+    dBy = cv2.Sobel(B, cv2.CV_32F, 0, 1)
+    dGx = cv2.Sobel(G, cv2.CV_32F, 1, 0)
+    dGy = cv2.Sobel(G, cv2.CV_32F, 0, 1)
+    dRx = cv2.Sobel(R, cv2.CV_32F, 1, 0)
+    dRy = cv2.Sobel(R, cv2.CV_32F, 0, 1)
     
-#     # Compute inner products
-#     Gxx = np.multiply(dBx, dBx) + np.multiply(dGx, dGx) + np.multiply(dRx, dRx)
-#     Gyy = np.multiply(dBy, dBy) + np.multiply(dGy, dGy) + np.multiply(dRy, dRy)
-#     Gxy = np.multiply(dBx, dBy) + np.multiply(dGx, dGy) + np.multiply(dRx, dRy)
+    # Compute inner products
+    Gxx = np.multiply(dBx, dBx) + np.multiply(dGx, dGx) + np.multiply(dRx, dRx)
+    Gyy = np.multiply(dBy, dBy) + np.multiply(dGy, dGy) + np.multiply(dRy, dRy)
+    Gxy = np.multiply(dBx, dBy) + np.multiply(dGx, dGy) + np.multiply(dRx, dRy)
     
-#     Theta = 0.5 * np.arctan((2 * Gxy) / (Gxx - Gyy))
-#     # F = np.sqrt(0.5 * (Gxx + Gyy) + (Gxx - Gyy) * np.cos(2 * Theta) + 2 * Gxy * np.sin(2 * Theta)))
+    Theta = 0.5 * np.arctan((2 * Gxy) / (Gxx - Gyy))
+    # F = np.sqrt(0.5 * (Gxx + Gyy) + (Gxx - Gyy) * np.cos(2 * Theta) + 2 * Gxy * np.sin(2 * Theta)))
     
-#     F = cv2.normalize(F.astype('float'), None, 0, 1, cv2.NORM_MINMAX)
-#     return F
+    F = cv2.normalize(F.astype('float'), None, 0, 1, cv2.NORM_MINMAX)
+    return F
 
 # def plot_multiple_imgs (imlist, titles, nrows = 2, ncols = 2):
 #     for i in range(len(imlist)):
