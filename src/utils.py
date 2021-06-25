@@ -11,12 +11,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-
 def normalize_img(img):
     return cv2.normalize(img.astype('float64'), None, 1, 0, cv2.NORM_MINMAX)
 
+
 def do_nothing(x):
     pass
+
 
 def plot_grayscale_histogram(gray_img):
     plt.hist(gray_img.ravel(), 256, [0, 256])
@@ -262,3 +263,43 @@ def scaleImage2_uchar(src):
     cv2.normalize(src, src, 1, 0, cv2.NORM_MINMAX)
     src = np.uint8(255 * src)
     return src
+
+
+def create_2D_gaussian(
+    shape = (100, 100), 
+    mx = 50, 
+    my = 50, 
+    sx = 10, 
+    sy = 10,
+    theta = 0):
+    """
+    Create an image with shape = (rows x cols) with a 2D Gaussian with
+    mx, my means in the x and y directions and standard deviations
+    sx, sy respectively. The Gaussian can also be rotate of theta
+    radians in clockwise direction.
+
+    Example usage:
+    g = create_2D_gaussian(
+        shape = (500, 1000), 
+        mx = 5000, 
+        my = 250, 
+        sx = 60, 
+        sy = 20,
+        theta = -30
+        )
+    """
+    
+    xx0, yy0 = np.meshgrid(range(shape[1]), range(shape[0]))
+    xx0 -= mx
+    yy0 -= my
+    theta = np.deg2rad(theta)
+    xx = xx0 * np.cos(theta) - yy0 * np.sin(theta)
+    yy = xx0 * np.sin(theta) + yy0 * np.cos(theta)
+    try:
+        img = np.exp( - ((xx**2)/(2*sx**2) + 
+                         (yy**2)/(2*sy**2)) )
+    except ZeroDivisionError:
+        img = np.zeros((shape[0], shape[1]), dtype='float64')
+
+    return cv2.normalize(img.astype('float'), None, 1, 0, cv2.NORM_MINMAX)
+
