@@ -84,12 +84,40 @@ img = np.ones((3, 3), dtype=np.float32)
 cv2.randn(img, 0, 1)
 print("Normally distributed random values = \n", img, "\n\n")
 
-cv2.normalize(img, img, 255, 0, cv2.NORM_MINMAX)
-print("Normalized = \n", img, "\n\n")
+img2 = cv2.normalize(img, None, 255, 0, cv2.NORM_MINMAX)
+print("Normalized = \n", img2, "\n\n")
 
-img = np.asarray(img, dtype=np.uint8)
-print("Converted to uint8 = \n", img, "\n\n")
+img2 = np.asarray(img2, dtype=np.uint8)
+print("Converted to uint8 = \n", img2, "\n\n")
 
-img = 255 * img
-img = np.asarray(img, dtype=np.uint8)
+img = (255. * cv2.normalize(img, None, 1.0, 0, cv2.NORM_MINMAX)).astype(np.uint8)
 print(img, "\n\n")
+
+print("img == img2?")
+print((img == img2).all())
+
+# Normally distributed random values = 
+#  [[-0.10685379 -0.3343182   0.6172743 ]
+#  [-1.0519822   2.1705427   0.2486184 ]
+#  [-0.12854138 -1.2465241  -0.5537428 ]] 
+
+
+# Normalized = 
+#  [[ 8.5048355e+01  6.8073730e+01  1.3908670e+02]
+#  [ 1.4517767e+01  2.5499998e+02  1.1157561e+02]
+#  [ 8.3429909e+01 -2.9158273e-06  5.1699078e+01]] 
+
+
+# Converted to uint8 = 
+#  [[ 85  68 139]
+#  [ 14 254 111]
+#  [ 83   0  51]] 
+
+
+# [[ 85  68 139]
+#  [ 14 255 111]
+#  [ 83   0  51]] 
+
+
+# img == img2?
+# False

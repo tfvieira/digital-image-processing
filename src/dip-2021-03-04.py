@@ -13,6 +13,7 @@ path = "../img/"
 # TRANSLATIONS
 #==============================================================================
 img = cv2.imread(os.path.join(path, 'lena.png'))
+cv2.namedWindow("img", cv2.WINDOW_KEEPRATIO)
 cv2.imshow("img", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

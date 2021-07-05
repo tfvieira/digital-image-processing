@@ -169,6 +169,12 @@ def create_white_disk(height = 100, width = 100, xc = 50, yc = 50, rc = 20):
             ( (xx - xc)**2 + (yy - yc)**2 - rc**2  ) < 0).astype('float64')
     return img
 
+def bgr2rgb(img):
+    """
+    Convert image color from BGR to RGB
+    """
+    return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
 def color_gradient(img):
     
     # Get image's BGR channels
