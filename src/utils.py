@@ -11,6 +11,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+def bgr2rgb(img):
+    return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
 def normalize_img(img):
     return cv2.normalize(img.astype('float64'), None, 1, 0, cv2.NORM_MINMAX)
 
