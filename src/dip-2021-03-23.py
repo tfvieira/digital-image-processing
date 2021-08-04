@@ -86,7 +86,7 @@ img = cv2.imread(os.path.join(path, 'lena.png'), cv2.IMREAD_GRAYSCALE)
 cv2.namedWindow("Original", cv2.WINDOW_KEEPRATIO)
 cv2.namedWindow("New", cv2.WINDOW_KEEPRATIO)
 
-ksizex = 0;
+ksizex = 0
 ksizey = 0
 
 cv2.createTrackbar("ksizex", "New", ksizex, 63, do_nothing)
