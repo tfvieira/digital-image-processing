@@ -111,8 +111,9 @@ while 0xFF & cv2.waitKey(1) != ord('q'):
 cv2.destroyAllWindows()
 
 #%% The Discrete Fourier Transform - Part I - Obtaining real and imaginary 
-#parts of the Fourier Transform
-img = cv2.imread(os.path.join(path,'rectangle.jpg'), cv2.IMREAD_GRAYSCALE)
+#   parts of the DFT
+img = cv2.imread(os.path.join(path, 'rectangle.jpg'), cv2.IMREAD_GRAYSCALE)
+
 
 cv2.namedWindow('Original', cv2.WINDOW_KEEPRATIO)
 cv2.namedWindow('Plane 0 - Real', cv2.WINDOW_KEEPRATIO)
@@ -175,8 +176,8 @@ while cv2.waitKey(1) != ord('q'):
 cv2.destroyAllWindows()
 
 #%% DFT - Part III -> Shifting the Transform
-img = cv2.imread(os.path.join(path,'lena.png'), cv2.IMREAD_GRAYSCALE)
-# img = cv2.imread(os.path.join(path,'rectangle.jpg'), cv2.IMREAD_GRAYSCALE)
+# img = cv2.imread(os.path.join(path,'lena.png'), cv2.IMREAD_GRAYSCALE)
+img = cv2.imread(os.path.join(path,'rectangle.jpg'), cv2.IMREAD_GRAYSCALE)
 
 cv2.namedWindow('Original', cv2.WINDOW_KEEPRATIO)
 cv2.namedWindow('Mag', cv2.WINDOW_KEEPRATIO)
@@ -352,10 +353,10 @@ while cv2.waitKey(1) != ord('q'):
     theta = cv2.getTrackbarPos('Theta', 'img')
 
     e1 = cv2.getTickCount()
-#    img = createCosineImage(rows, 
-#                            cols, 
-#                            float(freq/1e3), 
-#                            float(2 * np.pi * theta/100.0)) # ~0.2 second
+    # img = createCosineImage(rows, 
+    #                        cols, 
+    #                        float(freq/1e3), 
+    #                        float(2 * np.pi * theta/100.0)) # ~0.2 second
     img = createCosineImage2(rows,
                              cols,
                              float(freq/1e3),
