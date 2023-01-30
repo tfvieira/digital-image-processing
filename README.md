@@ -2,7 +2,7 @@
 Digital Image Processing course
 
 # 2022-2
-
+- Google Classroom: [kwasypk](https://classroom.google.com/c/NTg3MzA1NjMzMTgz?cjc=kwasypk).
 - [schedule](https://docs.google.com/spreadsheets/d/1VDWdZzUZELKAyGlEghDPtEmlzUlxEfJmx1Y_o_ibkO0/edit?usp=sharing).
 
 # References
