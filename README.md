@@ -1,7 +1,9 @@
 # digital-image-processing
 Digital Image Processing course
 
+# 2022-2
 
+- [schedule](https://docs.google.com/spreadsheets/d/1VDWdZzUZELKAyGlEghDPtEmlzUlxEfJmx1Y_o_ibkO0/edit?usp=sharing).
 
 # References
 
