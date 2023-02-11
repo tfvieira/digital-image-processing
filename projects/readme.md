@@ -200,11 +200,50 @@ The state-of-the-art **is not** a list of references, but a comprehensive analys
 
 ### Conferences
 
-- ICIP -- IEEE International Conference on Image Processing.
-- MICCAI -- International Conference on Medical Image Computing and Computer Assisted Intervention.
-- CAIP -- International Conference on Computer Analysis of Images and Patterns.
-- ICIAP -- International Conference on Image Analysis and Processing.
-- ICIAR -- International Conference on Image Analysis and Recognition.
-- IWSSIP -- International Conference on Systems, Signals and Image Processing.
-- SIBGRAPI -- Conference on Graphics, Patterns and Images.
-- VCIP -- IEEE International Conference on Visual Communications and Image Processing.
+| Qualis 	| Acronym   	| Conference                                                                            	|
+|--------	|-----------	|---------------------------------------------------------------------------------------	|
+| A1     	| ICIP      	| IEEE International Conference on Image Processing                                     	|
+| A1     	| CoRL      	| Conference on Robot   Learning                                                        	|
+| A1     	| HRI       	| ACM/IEEE International Conference on Human Robot   Interaction                        	|
+| A1     	| ICRA      	| IEEE International   Conference on Robotics and Automation                            	|
+| A1     	| IROS      	| IEEE/RSJ International Conference on Intelligent   Robots and Systems                 	|
+| A1     	| RSS       	| Robotics: Science and   Systems                                                       	|
+| A1     	| 3DV       	| International   Conference on 3D Vision                                               	|
+| A1     	| ACCV      	| Asian Conference on Computer Vision                                                   	|
+| A1     	| BMVC      	| British   Machine Vision Conference                                                   	|
+| A1     	| CVPR      	| IEEE Conference on Computer Vision and Pattern   Recognition                          	|
+| A1     	| ECCV      	| European   Conference on Computer Vision                                              	|
+| A1     	| ICCV      	| IEEE   International Conference on Computer Vision                                    	|
+| A1     	| WACV      	| Workshop   on Applications of Computer Vision                                         	|
+| A2     	| Humanoids 	| IEEE RAS   International Conference on Humanoid Robot                                 	|
+| A2     	| RO-MAN    	| IEEE International Symposium on Robot and Human   Interactive Communication           	|
+| A3     	| ICIAP     	| International   Conference on Image Analysis and Processing                           	|
+| A3     	| ICIAR     	| International Conference on Image Analysis and   Recognition                          	|
+| A3     	| IWSSIP    	| International   Conference on Systems, Signals and Image Processing                   	|
+| A3     	| SIBGRAPI  	| Conference on Graphics, Patterns and Images                                           	|
+| A3     	| VCIP      	| IEEE International   Conference on Visual Communications and Image Processing         	|
+| A3     	| BioRob    	| IEEE RAS & EMBS International Conference on   Biomedical Robotics and Biomechatronics 	|
+| A3     	| ECMR      	| European Conference   on Mobile Robots                                                	|
+| A3     	| ICAR      	| International Conference on Advanced Robotics                                         	|
+| A3     	| ICORR     	| IEEE International   Conference on Rehabilitation Robotics                            	|
+| A3     	| ISER      	| International Symposium on Experimental Robotics                                      	|
+| A3     	| ROBIO     	| IEEE International   Conference on Robotics and Biomimetics                           	|
+| A3     	| SSRR      	| International Symposium on Safety, Security and   Rescue Robotics                     	|
+| A3     	| WAFR      	| Workshop on the   Algorithmic Foundations of Robotics                                 	|
+| A3     	| MVA       	| IAPR   International Conference on Machine Vision Applications                        	|
+| A3     	| VISAPP    	| International Conference on Computer Vision Theory and   Applications                 	|
+| A4     	| ICDIP     	| International Conference on Digital Image   Processing                                	|
+| A4     	| ICIVC     	| International   Conference on Image, Vision and Computing                             	|
+| A4     	| ICSIP     	| IEEE International Conference on Signal and Image   Processing                        	|
+| A4     	| CRV       	| Canadian Conference   on Computer and Robot Vision                                    	|
+| A4     	| ICARV     	| International Conference on Control, Automation,   Robotics and Vision                	|
+| A4     	| ICCAR     	| International   Conference on Control, Automation and Robotics                        	|
+| A4     	| IRC       	| IEEE International Conference on Robotic Computing                                    	|
+| A4     	| MMAR      	| International   Conference on Methods and Models in Automation and Robotics           	|
+| A4     	| RoboSoft  	| IEEE International Conference on Soft Robotics                                        	|
+| A4     	| TAROS     	| Conference Towards   Autonomous Robotics Systems                                      	|
+| A4     	| UR        	| International Conference on Ubiquitous Robots and   Ambient Intelligence              	|
+| A4     	| ACIVS     	| Advanced Concepts for Intelligent Vision Systems                                      	|
+| A4     	| CRV       	| Canadian   Conference on Computer and Robot Vision                                    	|
+| A4     	| ICARV     	| International Conference on Control, Automation,   Robotics and Vision                	|
+| A4     	| ICIVC     	| International   Conference on Image, Vision and Computing                             	|
