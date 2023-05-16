@@ -1,5 +1,5 @@
 #%%
-runfile('dip.py')
+runfile('dip_script.py')
 
 #%% Load a color image and visualize each channel separately
 img = cv2.imread(os.path.join(folder,'baboon.png'), cv2.IMREAD_COLOR)
@@ -68,16 +68,19 @@ plt.show()
 #%% Converting between color spaces - BGR to YRB - Part I
 # NTSC colorspace - Part I
 img = cv2.imread(os.path.join(folder,'baboon.png'), cv2.IMREAD_COLOR)
-
 img2 = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
 yrb = cv2.split(img2)
 
+#%%
 cv2.imshow('img', img)
 cv2.imshow('img2', img2)
 cv2.imshow('y', yrb[0])
 cv2.imshow('r', yrb[1])
 cv2.imshow('b', yrb[2])
 
+while True:
+    if 0xFF & cv2.waitKey(1) == ord('q'):
+        break
 cv2.destroyAllWindows()
 
 #%% Converting between color spaces - BGR to YRB - Part II
@@ -94,7 +97,11 @@ cv2.imshow('diff', diff)
 cv2.imshow('y', yrb[0])
 cv2.imshow('r', yrb[1])
 cv2.imshow('b', yrb[2])
-wait()
+
+while True:
+    if 0xFF & cv2.waitKey(1) == ord('q'):
+        break
+cv2.destroyAllWindows()
 
 #%% The HSV colorspace - Part I
 img = cv2.imread(os.path.join(folder,'rgbcube_kBKG.png'), cv2.IMREAD_COLOR)
@@ -156,7 +163,8 @@ cv2.destroyAllWindows()
 
 #%% The CMYK colorspace
 img = cv2.imread(os.path.join(folder,'baboon.png'), cv2.IMREAD_COLOR)
-img2 = 255 - img
+b = np.concatenate(([[[255]]],)*3, -1).astype(np.uint8)
+img2 = b - img
 ymc = cv2.split(img2)
 colormap = cv2.COLORMAP_JET
 while 0xFF & cv2.waitKey(1) != ord('q'):
