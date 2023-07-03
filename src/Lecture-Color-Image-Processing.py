@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # from numpy.fft import fft2, fftshift
 from utils import  do_nothing
 from utils import create_white_disk
-from utils import norm_img
+# from utils import norm_img
 from utils import compute_piecewise_linear_val
 # from utils import color_gradient
 PATH_TO_IMAGES = '../img'
@@ -43,13 +43,13 @@ img_m = m * rgb
 img_y = y * rgb
 
 plt.figure(figsize=(32,32))
-plt.subplot('241'); plt.title('RGB'); plt.imshow(rgb)
-plt.subplot('242'); plt.title('R'); plt.imshow(img_r)
-plt.subplot('243'); plt.title('G'); plt.imshow(img_g)
-plt.subplot('244'); plt.title('B'); plt.imshow(img_b)
-plt.subplot('246'); plt.title('C'); plt.imshow(img_c)
-plt.subplot('247'); plt.title('M'); plt.imshow(img_m)
-plt.subplot('248'); plt.title('Y'); plt.imshow(img_y)
+plt.subplot(241); plt.title('RGB'); plt.imshow(rgb)
+plt.subplot(242); plt.title('R'); plt.imshow(img_r)
+plt.subplot(243); plt.title('G'); plt.imshow(img_g)
+plt.subplot(244); plt.title('B'); plt.imshow(img_b)
+plt.subplot(246); plt.title('C'); plt.imshow(img_c)
+plt.subplot(247); plt.title('M'); plt.imshow(img_m)
+plt.subplot(248); plt.title('Y'); plt.imshow(img_y)
 plt.show()
 
 #%% Load a color image and visualize each channel separately
@@ -58,10 +58,10 @@ bgr = cv2.split(img)
 colormap = cv2.COLORMAP_JET
 #
 plt.figure(figsize=(32,32))
-plt.subplot('221'); plt.title('B'); plt.imshow(cv2.applyColorMap(bgr[0], colormap))
-plt.subplot('222'); plt.title('G'); plt.imshow(cv2.applyColorMap(bgr[1], colormap))
-plt.subplot('223'); plt.title('R'); plt.imshow(cv2.applyColorMap(bgr[2], colormap))
-plt.subplot('224'); plt.title('Original'); plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.subplot(221); plt.title('B'); plt.imshow(cv2.applyColorMap(bgr[0], colormap))
+plt.subplot(222); plt.title('G'); plt.imshow(cv2.applyColorMap(bgr[1], colormap))
+plt.subplot(223); plt.title('R'); plt.imshow(cv2.applyColorMap(bgr[2], colormap))
+plt.subplot(224); plt.title('Original'); plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.show()
 
 #%% Load a color image and visualize each channel separately
@@ -71,10 +71,10 @@ bgr = cv2.split(img)
 colormap = 1
 
 plt.figure(figsize=(32,32))
-plt.subplot('221'); plt.title('B'); plt.imshow(cv2.applyColorMap(bgr[0], colormap))
-plt.subplot('222'); plt.title('G'); plt.imshow(cv2.applyColorMap(bgr[1], colormap))
-plt.subplot('223'); plt.title('R'); plt.imshow(cv2.applyColorMap(bgr[2], colormap))
-plt.subplot('224'); plt.title('Original'); plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.subplot(221); plt.title('B'); plt.imshow(cv2.applyColorMap(bgr[0], colormap))
+plt.subplot(222); plt.title('G'); plt.imshow(cv2.applyColorMap(bgr[1], colormap))
+plt.subplot(223); plt.title('R'); plt.imshow(cv2.applyColorMap(bgr[2], colormap))
+plt.subplot(224); plt.title('Original'); plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.show()
 
 #%% Load a color image and visualize each channel separately
@@ -84,10 +84,10 @@ bgr = cv2.split(img)
 colormap = cv2.COLORMAP_JET
 #
 plt.figure(figsize=(32,32))
-plt.subplot('221'); plt.title('B'); plt.imshow(cv2.applyColorMap(bgr[0], colormap))
-plt.subplot('222'); plt.title('G'); plt.imshow(cv2.applyColorMap(bgr[1], colormap))
-plt.subplot('223'); plt.title('R'); plt.imshow(cv2.applyColorMap(bgr[2], colormap))
-plt.subplot('224'); plt.title('Original'); plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.subplot(221); plt.title('B'); plt.imshow(cv2.applyColorMap(bgr[0], colormap))
+plt.subplot(222); plt.title('G'); plt.imshow(cv2.applyColorMap(bgr[1], colormap))
+plt.subplot(223); plt.title('R'); plt.imshow(cv2.applyColorMap(bgr[2], colormap))
+plt.subplot(224); plt.title('Original'); plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.show()
 
 #%% Converting between color spaces - BGR to YRB - Part I
@@ -466,8 +466,10 @@ B, G, R = cv2.split(img)
 # Compute color derivatives
 dBx = cv2.Sobel(B, cv2.CV_32F, 1, 0)
 dBy = cv2.Sobel(B, cv2.CV_32F, 0, 1)
+
 dGx = cv2.Sobel(G, cv2.CV_32F, 1, 0)
 dGy = cv2.Sobel(G, cv2.CV_32F, 0, 1)
+
 dRx = cv2.Sobel(R, cv2.CV_32F, 1, 0)
 dRy = cv2.Sobel(R, cv2.CV_32F, 0, 1)
 
@@ -480,7 +482,9 @@ Theta = 0.5 * np.arctan2((2 * Gxy) , (Gxx - Gyy))
 F = np.sqrt(0.5 * (Gxx + Gyy) + (Gxx - Gyy) * np.cos(2 * Theta) + 2 * Gxy * np.sin(2 * Theta))
 F = cv2.normalize(F.astype('float'), None, 0, 1, cv2.NORM_MINMAX)
 
-rgb_grad = cv2.Sobel(img, cv2.CV_8U, 1, 0, ksize=5)
+rgb_grad = cv2.add(cv2.Sobel(r, cv2.CV_8U, 1, 0, ksize=5), 
+            cv2.Sobel(g, cv2.CV_8U, 1, 0, ksize=5),
+            cv2.Sobel(b, cv2.CV_8U, 1, 0, ksize=5))
 
 
 plt.figure(1, figsize = (32, 16)), plt.clf()
@@ -488,23 +492,28 @@ plt.subplot(231), plt.imshow(r, cmap = 'gray'), plt.title('R')
 plt.subplot(232), plt.imshow(g, cmap = 'gray'), plt.title('G')
 plt.subplot(233), plt.imshow(b, cmap = 'gray'), plt.title('B')
 plt.subplot(234), plt.imshow(rgb)
-plt.subplot(235), plt.imshow(rgb_grad, cmap = 'gray'), plt.title('RGB Gradient')
-plt.subplot(236), plt.imshow(F, cmap = 'gray'), plt.title('F')
+plt.subplot(235), plt.imshow(F, cmap = 'gray'), plt.title('F')
+plt.subplot(236), plt.imshow(rgb_grad, cmap = 'gray'), plt.title('RGB Gradient')
 plt.show()
 
 #%% Using the 'baboon' image
+from utils import color_gradient
 
-    
-img = cv2.imread(os.path.join(PATH_TO_IMAGES,'baboon.png'), cv2.IMREAD_COLOR)
+img = cv2.imread(os.path.join(PATH_TO_IMAGES,'lena.png'), cv2.IMREAD_COLOR)
 img = np.float32(img)
 
-F = colorGrad(img)
+F = color_gradient(img)
 
 cv2.namedWindow('img', cv2.WINDOW_KEEPRATIO)
 cv2.namedWindow('F', cv2.WINDOW_KEEPRATIO)
 while 0xFF & cv2.waitKey(1) != ord('q'):
-    cv2.imshow('img', scaleImage2_uchar(img))
-    cv2.imshow('F', scaleImage2_uchar(F))
+
+    img = cv2.normalize(img.astype('float'), None, 0, 1, cv2.NORM_MINMAX)
+    F   = cv2.normalize(F.astype('float'),   None, 0, 1, cv2.NORM_MINMAX)
+
+    cv2.imshow('img', img)
+    cv2.imshow('F', F)
+
 cv2.destroyAllWindows()
 
 #%% Image Segmentation in the BGR colorspace - Part I

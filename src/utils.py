@@ -197,7 +197,7 @@ def color_gradient(img):
     Gxy = np.multiply(dBx, dBy) + np.multiply(dGx, dGy) + np.multiply(dRx, dRy)
     
     Theta = 0.5 * np.arctan((2 * Gxy) / (Gxx - Gyy))
-    # F = np.sqrt(0.5 * (Gxx + Gyy) + (Gxx - Gyy) * np.cos(2 * Theta) + 2 * Gxy * np.sin(2 * Theta)))
+    F = np.sqrt(0.5 * (Gxx + Gyy) + (Gxx - Gyy) * np.cos(2 * Theta) + 2 * Gxy * np.sin(2 * Theta))
     
     F = cv2.normalize(F.astype('float'), None, 0, 1, cv2.NORM_MINMAX)
     return F
