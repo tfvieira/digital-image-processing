@@ -7,6 +7,7 @@ Created on Tue Sep  3 10:56:09 2019
 """
 import os
 import cv2
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -16,6 +17,9 @@ def bgr2rgb(img):
 
 def normalize_img(img):
     return cv2.normalize(img.astype('float64'), None, 1, 0, cv2.NORM_MINMAX)
+
+def isgray(img):
+    return len(img.shape) < 3
 
 
 def do_nothing(x):
@@ -35,20 +39,30 @@ def plot_rgb_histogram(rgb_img):
     plt.show()
     return None
     
-def plot_histogram(img):
+def plot_histogram(img, ax=[]):
     # Grayscale image
-    if len(img.shape) == 2:
+    if isgray(img):
         hist = cv2.calcHist([img], [0], None, [256], [0, 256])
-        plt.plot(hist, color='k')
-        plt.show()
+        if ax != []:
+            ax.plot(hist, color='k')
+            ax.show()
+        else:
+            plt.plot(hist, color='k')
+            plt.show()
     # Color image
-    elif len(img.shape) == 3:
+    else:
         color = ('r', 'g', 'b')
         for i, col in enumerate(color):
             hist = cv2.calcHist([img], [i], None, [256], [0, 256])
-            plt.plot(hist, color=col)
-            plt.xlim([0, 256])
-    plt.show()
+            if ax != []:
+                ax.plot(hist, color=col)
+                ax.set_xlim([0, 256])                
+            else:
+                plt.plot(hist, color=col)
+                plt.xlim([0, 256])
+    if ax == []:
+        plt.show()
+
     return None
 
 def create_noisy_img(shape, noise_type = 'uniform', a=127, b=40):
@@ -202,15 +216,43 @@ def color_gradient(img):
     F = cv2.normalize(F.astype('float'), None, 0, 1, cv2.NORM_MINMAX)
     return F
 
-# def plot_multiple_imgs (imlist, titles, nrows = 2, ncols = 2):
-#     for i in range(len(imlist)):
-#         img = imlist[i]
-#         plt.subplot(rc + str(i+1))
-#         if img.ndim > 2:
-#             plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-#         else:
-#             plt.imshow(img, cmap='gray')
-#         plt.title(titles[i])
+def plot_multiple_images(imlist, titles=[], ncols = 2):
+
+    plt.figure(figsize=(16,16))
+    # a = np.random.random((5,3))
+
+    # imlist = [a, a, a, a, a]
+
+    # ncols = 7
+    nimgs = len(imlist)
+    nrows = math.ceil(nimgs/ncols)
+
+    # titles = [str(k+1) for k in range(nimgs)]
+
+    # print(f'nimgs = {nimgs}')
+    # print(f'ncols = {ncols}')
+    # print(f'nrows = {nrows}')
+
+    for r in range(nrows):
+
+        for c in range(ncols):
+
+            i = min(r*ncols + c, nimgs - 1)
+
+            img = imlist[i]
+
+            s = str(nrows) + str(ncols) + str(i+1)
+            plt.subplot(int(s))
+
+            if isgray(img):
+                plt.imshow(img, cmap='gray')
+            else:
+                plt.imshow(bgr2rgb(img))
+            
+            if titles != []:
+                plt.title(titles[i])
+
+
 
 
 
