@@ -11,10 +11,6 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-def bgr2rgb(img):
-    return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
 def normalize_img(img):
     return cv2.normalize(img.astype('float64'), None, 1, 0, cv2.NORM_MINMAX)
 
@@ -216,42 +212,74 @@ def color_gradient(img):
     F = cv2.normalize(F.astype('float'), None, 0, 1, cv2.NORM_MINMAX)
     return F
 
-def plot_multiple_images(imlist, titles=[], ncols = 2):
+def plot_multiple_images(imlist, titles=[], ncols=2):
 
-    plt.figure(figsize=(16,16))
-    # a = np.random.random((5,3))
-
-    # imlist = [a, a, a, a, a]
-
-    # ncols = 7
     nimgs = len(imlist)
     nrows = math.ceil(nimgs/ncols)
-
-    # titles = [str(k+1) for k in range(nimgs)]
-
-    # print(f'nimgs = {nimgs}')
-    # print(f'ncols = {ncols}')
-    # print(f'nrows = {nrows}')
-
+    fig, axs = plt.subplots(nrows, ncols)
+    k = 0
     for r in range(nrows):
-
         for c in range(ncols):
-
-            i = min(r*ncols + c, nimgs - 1)
-
-            img = imlist[i]
-
-            s = str(nrows) + str(ncols) + str(i+1)
-            plt.subplot(int(s))
-
+            if k == nimgs:
+                continue
+            img = imlist[k]
             if isgray(img):
-                plt.imshow(img, cmap='gray')
+                axs[r, c].imshow(img, cmap='gray')
             else:
-                plt.imshow(bgr2rgb(img))
-            
-            if titles != []:
-                plt.title(titles[i])
+                axs[r, c].imshow(img)
+            axs[r, c].set_title(titles[k])
+            k = k + 1 
 
+def bgr2gray(img):
+    """
+    Convert image color from BGR to RGB
+    """
+    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+def bgr2rgb(img):
+    """
+    Convert image color from BGR to RGB
+    """
+    return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+def bgr2hsv(img):
+    """
+    Convert image color from BGR to HSV
+    """
+    return cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+def bgr2lab(img):
+    """
+    Convert image color from BGR to LAB
+    """
+    return cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+
+def bgr2ycrcb(img):
+    """
+    Convert image color from BGR to YCRCb
+    """
+    return cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
+
+def analyze_colors(src):
+
+    gray  = bgr2gray(src)
+    b,  g,  r = cv2.split(src)
+    h,  s,  v = cv2.split(bgr2hsv(src))
+    l,  a,  b = cv2.split(bgr2lab(src))
+    y, cr, cb = cv2.split(bgr2ycrcb(src))
+
+    imgs = [src, gray, np.zeros(src.shape),
+            h, s, v,
+            l, a, b,
+            y, cr, cb]
+    
+    titles = ['original', 'gray', '',
+            'h', 's', 'v',
+            'l', 'a', 'b',
+            'y', 'cr', 'cb']
+    
+
+    plot_multiple_images(imgs, titles, ncols=3)
 
 
 
