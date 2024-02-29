@@ -16,10 +16,10 @@ img = cv2.imread(os.path.join(PATH_TO_IMAGES,'baboon.png'), cv2.IMREAD_COLOR)
 bgr = cv2.split(img)
 
 plt.figure(figsize=(32,32))
-plt.subplot('221'); plt.title('B'); plt.imshow(bgr[0], 'gray')
-plt.subplot('222'); plt.title('G'); plt.imshow(bgr[1], 'gray')
-plt.subplot('223'); plt.title('R'); plt.imshow(bgr[2], 'gray')
-plt.subplot('224'); plt.title('Original'); plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.subplot(221); plt.title('B'); plt.imshow(bgr[0], 'gray')
+plt.subplot(222); plt.title('G'); plt.imshow(bgr[1], 'gray')
+plt.subplot(223); plt.title('R'); plt.imshow(bgr[2], 'gray')
+plt.subplot(224); plt.title('Original'); plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.show()
 
 #%% Load a color image and visualize each channel separately
@@ -42,7 +42,7 @@ img_c = c * rgb
 img_m = m * rgb
 img_y = y * rgb
 
-plt.figure(figsize=(32,32))
+plt.figure(figsize=(32,16))
 plt.subplot(241); plt.title('RGB'); plt.imshow(rgb)
 plt.subplot(242); plt.title('R'); plt.imshow(img_r)
 plt.subplot(243); plt.title('G'); plt.imshow(img_g)
@@ -129,7 +129,11 @@ img = cv2.imread(os.path.join(PATH_TO_IMAGES,'rgbcube_kBKG.png'), cv2.IMREAD_COL
 
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 h, s, v = cv2.split(hsv)
-v = cv2.normalize(v.astype('float'), None, 1, 0, cv2.NORM_MINMAX)
+# v = cv2.normalize(v.astype('float'), None, 1, 0, cv2.NORM_MINMAX)
+
+lst = ['img', 'hsv', 'h', 's', 'v']
+for l in lst:
+    cv2.namedWindow(l, cv2.WINDOW_KEEPRATIO)
 
 while 0xFF & cv2.waitKey(1) != ord('q'):
     cv2.imshow('img', img)
@@ -139,6 +143,27 @@ while 0xFF & cv2.waitKey(1) != ord('q'):
     cv2.imshow('v', v)
     
 cv2.destroyAllWindows()
+
+#%% The HSV colorspace - Part I
+img = cv2.imread(os.path.join(PATH_TO_IMAGES,'hsv_cone.png'), cv2.IMREAD_COLOR)
+
+hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+h, s, v = cv2.split(hsv)
+# v = cv2.normalize(v.astype('float'), None, 1, 0, cv2.NORM_MINMAX)
+
+lst = ['img', 'hsv', 'h', 's', 'v']
+for l in lst:
+    cv2.namedWindow(l, cv2.WINDOW_KEEPRATIO)
+
+while 0xFF & cv2.waitKey(1) != ord('q'):
+    cv2.imshow('img', img)
+    cv2.imshow('hsv', hsv)
+    cv2.imshow('h', h)
+    cv2.imshow('s', s)
+    cv2.imshow('v', v)
+    
+cv2.destroyAllWindows()
+
 
 #%% The HSV colorspace - Part II
 img = cv2.imread(os.path.join(PATH_TO_IMAGES,'baboon.png'), cv2.IMREAD_COLOR)
